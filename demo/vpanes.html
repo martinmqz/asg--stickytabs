@@ -1,0 +1,491 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sticky Navigation Bar</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        .box {
+            display: flex;
+            /* flex | inline-flex */
+            flex-direction: row;
+            /* row | row-reverse | column | column-reverse */
+            flex-wrap: nowrap;
+            /* nowrap | wrap | wrap-reverse */
+            flex-flow: row nowrap;
+            /* row wrap | row nowrap | column wrap | column nowrap */
+            justify-content: flex-start;
+            /* flex-start | flex-end | center | space-between | space around | space evenly | start | end | left | right + safe | unsafe */
+            align-items: stretch;
+            /* stretch | flex-start | flex-end | center | baseline | first baseline | last baseline | start | end | self-start | self-end + safe | unsafe */
+            align-content: normal;
+            /* normal | flex-start | flex-end | center | space-between | space-around | space-evely | stretch | end | baseline | first baseline | last baseline + safe | unsafe */
+        }
+
+        .box-item {
+            order: 0;
+            /* default 0 */
+            flex-grow: 4;
+            /* default 0 */
+            flex-shrink: 3;
+            /* default 1 */
+            flex-basis: 3;
+            /* deault auto */
+            flex: none;
+            /* none | flex-grow flex-shrink || flex-basis */
+            align-self: auto;
+            /* auto | flex-start | flex-end | center | baseline | stretch */
+        }
+    </style>
+    <style>
+        /**        
+          Replicating ASG Styles 
+        */
+        header {
+            height: 110px;
+        }
+
+        #content {
+            max-width: 1080px;
+            margin: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            color: rgb(77 77 77);
+            text-align: center;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: rgb(0 0 0 / 0%);
+            border: 2px solid rgb(0 0 0 / 0%);
+            padding: .5rem 2rem;
+            font-size: 1rem;
+            line-height: 1.25rem;
+            border-radius: 1.25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .btn-secondary {
+            color: rgb(146 111 58);
+            background-color: rgb(255 255 255);
+            border-color: rgb(216 165 87);
+            box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .08);
+        }
+
+        .btn-lg {
+            padding: .875rem 2.5rem;
+            font-size: 1.25rem;
+            line-height: 1.25rem;
+            border-radius: 1.625rem;
+        }
+
+        a.btn {
+            border-radius: .25rem;
+        }
+
+        .hero {
+            margin-bottom: 3.5rem !important;
+            min-height: 15rem;
+            padding-top: 5rem;
+            padding-bottom: 2rem;
+        }
+
+        /** Demo helpers */
+        p {
+            margin-bottom: 250px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="../dist/asg-sticky-tabs.min.css">
+    <!-- <link rel="stylesheet" href="/assets/public/css/asg-sticky-tabs.min.css"> -->
+
+</head>
+
+<body>
+    <header>
+        <h1>HEADER</h1>
+    </header>
+    <div class="hero primary-hero">
+        <div class="d-flex">
+            <div class="container hero-body d-flex align-items-center">
+                <div class="row w-100">
+                    <div class="col-12">
+                        <h1 id="hero-title">Hero header</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="content" tabindex="-1">
+        <div class="row top-row">
+            <div class="col-12 col-md-8" data-strict-a="false">
+                <div class="lead">
+                    <h2>Portfolio, meet possibility</h2>
+                    <p>We believe investing is personal, and your clients’ portfolios should be as unique as they are.
+                        That’s why we created Remi, to help you easily build and manage customized, tax-optimized
+                        portfolios that reflect each client’s goals, values, and tax situation. With Remi, your clients’
+                        portfolios meet possibility.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4" data-strict-a="false">
+                <div class="callout">
+                    <h3>What is Remi?</h3>
+                    Remi combines a powerful, tech-enabled portfolio construction and tax-optimization engine, with our
+                    institutional investment expertise, so you can efficiently manage personalized portfolios for more
+                    of your clients.
+                </div>
+            </div>
+            <div class="col-12 col-md-8" data-strict-a="false">
+                <div class="video">
+                    <h2>Meet Remi</h2>
+
+
+                    <div data-habitat="C1">
+                        <div tabindex="0"
+                            class="plyr plyr--full-ui plyr--video plyr--html5 plyr--paused plyr--stopped plyr--pip-supported plyr--fullscreen-enabled plyr--captions-enabled plyr__poster-enabled">
+                            <div class="plyr__controls"><button class="plyr__controls__item plyr__control" type="button"
+                                    data-plyr="play" aria-label="Play"><svg class="icon--pressed" role="presentation"
+                                        focusable="false">
+                                        <use xlink:href="/assets/public/images/c/video/plyr.svg#plyr-pause"></use>
+                                    </svg><svg class="icon--not-pressed" role="presentation" focusable="false">
+                                        <use xlink:href="/assets/public/images/c/video/plyr.svg#plyr-play"></use>
+                                    </svg><span class="label--pressed plyr__tooltip">Pause</span><span
+                                        class="label--not-pressed plyr__tooltip">Play</span></button>
+                                <div class="plyr__controls__item plyr__progress__container">
+                                    <div class="plyr__progress"><input data-plyr="seek" type="range" min="0" max="100"
+                                            step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek"
+                                            aria-valuemin="0" aria-valuemax="176.512" aria-valuenow="0"
+                                            id="plyr-seek-9932" style="--value:0%;"
+                                            aria-valuetext="00:00 of 02:56"><progress class="plyr__progress__buffer"
+                                            min="0" max="100" value="2.0922090282813635" role="progressbar"
+                                            aria-hidden="true">% buffered</progress><span
+                                            class="plyr__tooltip">00:00</span></div>
+                                </div>
+                                <div class="plyr__controls__item plyr__time--current plyr__time"
+                                    aria-label="Current time">-02:56</div>
+                                <div class="plyr__controls__item plyr__volume"><button type="button"
+                                        class="plyr__control" data-plyr="mute"><svg class="icon--pressed"
+                                            role="presentation" focusable="false">
+                                            <use xlink:href="/assets/public/images/c/video/plyr.svg#plyr-muted"></use>
+                                        </svg><svg class="icon--not-pressed" role="presentation" focusable="false">
+                                            <use xlink:href="/assets/public/images/c/video/plyr.svg#plyr-volume"></use>
+                                        </svg><span class="label--pressed plyr__tooltip">Unmute</span><span
+                                            class="label--not-pressed plyr__tooltip">Mute</span></button><input
+                                        data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1"
+                                        autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0"
+                                        aria-valuemax="100" aria-valuenow="100" id="plyr-volume-9932"
+                                        aria-valuetext="100.0%" style="--value:100%;"></div><button
+                                    class="plyr__controls__item plyr__control" type="button" data-plyr="captions"><svg
+                                        class="icon--pressed" role="presentation" focusable="false">
+                                        <use xlink:href="/assets/public/images/c/video/plyr.svg#plyr-captions-on"></use>
+                                    </svg><svg class="icon--not-pressed" role="presentation" focusable="false">
+                                        <use xlink:href="/assets/public/images/c/video/plyr.svg#plyr-captions-off">
+                                        </use>
+                                    </svg><span class="label--pressed plyr__tooltip">Disable captions</span><span
+                                        class="label--not-pressed plyr__tooltip">Enable captions</span></button><button
+                                    class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen"><svg
+                                        class="icon--pressed" role="presentation" focusable="false">
+                                        <use xlink:href="/assets/public/images/c/video/plyr.svg#plyr-exit-fullscreen">
+                                        </use>
+                                    </svg><svg class="icon--not-pressed" role="presentation" focusable="false">
+                                        <use xlink:href="/assets/public/images/c/video/plyr.svg#plyr-enter-fullscreen">
+                                        </use>
+                                    </svg><span class="label--pressed plyr__tooltip">Exit fullscreen</span><span
+                                        class="label--not-pressed plyr__tooltip">Enter fullscreen</span></button>
+                            </div>
+                            <div class="plyr__video-wrapper"><video id="video-1640932988944"
+                                    poster="/assets/public/images/c/in-page/see-how-remi-can-deliver.jpg"
+                                    data-title="Meet Remi">
+                                    <source src="https://media.wellsfargoassetmanagement.com/video/meet-remi.mp4"
+                                        type="video/mp4">
+                                    <track kind="captions" label="English" src-lang="en"
+                                        src="/assets/public/vtt/meet-remi.vtt" default="">
+                                </video>
+                                <div class="plyr__poster"
+                                    style="background-image: url(&quot;/assets/public/images/c/in-page/see-how-remi-can-deliver.jpg&quot;);">
+                                </div>
+                            </div>
+                            <div class="plyr__captions"></div><button type="button"
+                                class="plyr__control plyr__control--overlaid" data-plyr="play" aria-label="Play"><svg
+                                    role="presentation" focusable="false">
+                                    <use xlink:href="/assets/public/images/c/video/plyr.svg#plyr-play"></use>
+                                </svg><span class="plyr__sr-only">Play</span></button>
+                        </div>
+                    </div>
+
+                    <a data-toggle="collapse" href="#transcript-35d3241946888" role="button" aria-expanded="false"
+                        aria-controls="transcript-35d3241946888" class="collapsed">
+                        <h3 class="h5 transcript"><span class="fa fa-chevron-down fa-pull-right"></span>Video transcript
+                        </h3>
+                    </a>
+                    <div class="multi-collapse collapse" id="transcript-35d3241946888">
+                        <div class="transcript-body">
+                            <p>Your clients are unique. Each has different goals, risk tolerance and tax requirements.
+                                And their expectation from you, their financial advisor, are greater than ever before.
+                                They expect you to provide an investment portfolio just for them. And when it comes to
+                                taxes, they are generally looking to keep more of what they earn.</p>
+                            <p>Building and managing customized, tax-optimized portfolios on your own is complex and
+                                time consuming, and may take focus away from other areas of your practice. What if we
+                                told you there was an easier way to offer greater personalization and tax optimization
+                                for more of your clients?</p>
+                            <p>Meet Remi. Where Portfolio meets possibility</p>
+                            <p>Remi uses a powerful tech-enabled portfolio construction and tax-optimization engine
+                                designed to help you easily deliver tax efficient, personalized portfolios at scale.
+                                Remi’s blend of technology and high touch service can help make the process of building
+                                either new, custom portfolios or transitioning existing holdings simple and efficient.
+                            </p>
+                            <p>Your clients get portfolios personalized to their individual preferences and needs
+                                unavailable through off-the-shelf mutual funds or ETFs.</p>
+                            <p>And with taxes being one of the biggest drags on performance Remi provides full
+                                life-cycle tax management by minimizing tax liability through tax-loss harvesting,
+                                personalized tax liability management and deferring gains.</p>
+                            <p>To find out more about how Remi can help you easily build portfolios that are
+                                personalized to your client’s individual needs, and deliver on-going tax optimization so
+                                they can keep more of what they earn, get started today.</p>
+                            <p>PAR-0921-00121</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12" data-strict-a="false">
+                <br>
+                <div id="stickytabs-wrapper">
+                    <div id="stickytabs" data-type='vpanel' role="tablist">
+                        <a href="#transition-management" role="tab"><span>Transition management</span></a>
+                        <a href="#customization" role="tab"><span>Customization</span></a>
+                        <a href="#tax-management" role="tab"><span>Tax management</span></a>
+                        <a href="#remi-in-action" role="tab"><span>Remi&nbsp;In Action</span></a>
+                        <a href="#get-started" role="tab"><span>Get Started</span></a>
+                    </div>
+                    <div id="stickytabs-bar"></div>
+                </div>
+            </div>
+            <div class="col-12" data-strict-a="false">
+                <h3 id="transition-management" class="stickytabs-anchor">Simple transition process</h3>
+                <p>With Remi we begin our transition planning by analyzing your clients’ unique investment profile and
+                    evaluating their existing holdings on an individual tax-lot basis. We do this to provide your
+                    clients with the benefits of a portfolio based on their tolerance for interest rate, credit and
+                    duration risk in their fixed income portfolios.</p>
+            </div>
+            <div class="col-12 col-md-4" data-strict-a="false">
+                <p>We deliver a transition analysis with a range of options that examine the tax and tracking-error
+                    considerations of moving a legacy portfolio to a customized solution in a risk and tax-efficient
+                    manner.</p>
+                <p><strong>Completion portfolio</strong>
+                    <br>
+                    The least tax impact with no sells from the legacy portfolio and buys funded only with existing
+                    cash.
+                </p>
+                <p><strong>Optimized portfolio</strong>
+                    <br>
+                    The best trade-off among risk, returns, and tax liability.
+                </p>
+                <p><strong>Model portfolio</strong>
+                    <br>
+                    No considerations of tax liability and best positioned to deliver the model objective.
+                </p>
+            </div>
+            <div class="col-12 col-md-8" data-strict-a="false">
+                <div class="mt-5">
+                    <div>
+
+
+                    </div>
+                    <img src="/assets/public/images/c/in-page/portfolio-transition-balances.png" class="img-fluid"
+                        alt="Portfolio transition balances return outcomes and tax liability">
+
+                </div>
+            </div>
+            <div class="col-12" data-strict-a="false">
+                <h3 id="customization" class="stickytabs-anchor">Customized SMA solutions</h3>
+                <p>Every investor sets investment objectives which are unique to them. One-size-fits-all products are
+                    not able to provide the flexibility investors need when it comes to balancing their risk preferences
+                    and tax liabilities. The challenge is that customized solutions can be time-consuming to build,
+                    operationally complex to manage, and overwhelming to implement across all client portfolios.</p>
+            </div>
+            <div class="col-12 col-md-4" data-strict-a="false">
+                <div class="mt-5">
+                    <div></div>
+                    <img src="/assets/public/images/c/in-page/customized-sma-platform.png" class="img-fluid"
+                        alt="Municipal Income Leader SMA Example">
+
+                </div>
+            </div>
+            <div class="col-12 col-md-8" data-strict-a="false">
+                <p>Remi enables you to provide your clients with real customization. As an example, a client in our
+                    Municipal Income Ladder SMA could customize across these factors:</p>
+                <ul>
+                    <li><strong>State concentration</strong> - National or state-specific emphasis</li>
+                    <li><strong>Credit quality</strong> - From AAA to A</li>
+                    <li><strong>Duration maturity</strong> - Three flavors: short, intermediate and long</li>
+                    <li><strong>Coupon income</strong> - Reinvest or receive the cash</li>
+                    <li><strong>Tax loss harvesting</strong> - Actively harvest losses year-round</li>
+                </ul>
+            </div>
+            <div class="col-12" data-strict-a="false">
+                <h3 id="tax-management" class="stickytabs-anchor">Full-life-cycle tax management</h3>
+                <p>When people talk about growing their clients’ assets, the conversation usually focuses on returns and
+                    alpha generation. But for many high-net worth investors, decreasing taxes creates an opportunity to
+                    increase net gains. Research has shown that over a 25-year period of active funds’ performance,
+                    investors lose nearly 2.5% of their investment returns to taxes annually*. Tax efficient management
+                    is a full life cycle process that our customized SMA platform can provide:</p>
+            </div>
+            <div class="col-12 col-md-6" data-strict-a="false">
+                <div class="mt-6">
+                    <ul class="custom-fa fa-5A6268">
+                        <li><span class="fa fa-check">&nbsp;</span><strong>Systematic loss-harvesting</strong>
+                            <br>
+                            Opportunities can be seized proactively, not just at the end of the year.
+                            <br>
+                            <br>
+                        </li>
+                        <li><span class="fa fa-check">&nbsp;</span><strong>Defer gains by holding an asset with embedded
+                                gains</strong>
+                            <br>
+                            If sold, the asset with an embedded gain incurs tax, sometimes waiting is beneficial.
+                            <br>
+                            <br>
+                        </li>
+                        <li><span class="fa fa-check">&nbsp;</span><strong>Tax-lot level decision-making</strong>
+                            <br>
+                            Holistic tax optimization provided by our robust tax management technology.
+                            <br>
+                            <br>
+                        </li>
+                        <li><span class="fa fa-check">&nbsp;</span><strong>Managing highly appreciated assets</strong>
+                            <br>
+                            In the later years of an account, the emphasis will shift to managing a combination of
+                            highly appreciated assets and new assets in the portfolio in tax-aware fashion.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-6" data-strict-a="false">
+                <div class="mt-6">
+                    <ul class="custom-fa fa-5A6268">
+                        <li><span class="fa fa-check">&nbsp;</span><strong>Tax liability management</strong>
+                            <br>
+                            Managing the overall tax liability of of the client by paying attention to client taxes on
+                            other accounts and prior year loss carry-forward.
+                            <br>
+                            <br>
+                        </li>
+                        <li><span class="fa fa-check">&nbsp;</span><strong>Intelligent management of asset holding
+                                periods</strong>
+                            <br>
+                            Avoid generating short-term gains by factoring in holding periods.
+                            <br>
+                            <br>
+                        </li>
+                        <li><span class="fa fa-check">&nbsp;</span><strong>Smarter cash withdrawals</strong>
+                            <br>
+                            Drawing down from the account periodically or one-off in a tax-sensitive fashion.
+                            <br>
+                            <br>
+                        </li>
+                        <li><span class="fa fa-check">&nbsp;</span><strong>Avoiding violation of the wash-sale
+                                rule</strong>
+                            <br>
+                            Replacing assets sold to offset capital gains with a similar sectoral or risk profile
+                            security.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-4" data-strict-a="false">
+                <div class="mt-8">
+                    <div>
+
+
+                    </div>
+                    <img src="/assets/public/images/c/in-page/customized-sma-platform-in-action.png" class="img-fluid"
+                        alt="WFAM Customized SMA Platform in Action">
+
+                </div>
+            </div>
+            <div class="col-12 col-md-8" data-strict-a="false">
+                <div class="mt-8">
+                    <h2 id="remi-in-action" class="stickytabs-anchor">Remi in action</h2>
+                    <p>Here is how Remi works in practice using our Municipal Bond Ladder 1-10 Year SMA as an example.
+                        Each step along the way – from transition to customization and on-going monitoring demonstrates
+                        how your clients can benefit from our SMA platform customization.</p>
+                    <p><a href="/assets/public/pdf/capabilities/portfolio-meet-possibility.pdf#page=8"
+                            target="_blank">View the example (PDF)</a></p>
+                </div>
+            </div>
+            <div class="col-12" data-strict-a="false">
+                <h3 id="get-started" class="stickytabs-anchor">Ready to meet Remi? Let's get started.</h3>
+            </div>
+            <div class="col-12 col-md-6" data-strict-a="false">
+                <div class="mt-6">
+                    <div>
+
+
+                    </div>
+                    <img src="/assets/public/images/c/in-page/ready-to-take-the-next-step.png" class="img-fluid"
+                        alt="Man typing on a laptop">
+
+                </div>
+            </div>
+            <div class="col-12 col-md-6" data-strict-a="false">
+                <div class="mt-6">
+                    To request a meeting with one of our sales specialists, please provide your contact information.
+                    <br>
+                    <br>
+                    <a href="https://www.wellsfargomedia.com/allspring-customized-sma-platform-contact/"
+                        class="btn btn-primary btn-lg" target="_blank">Tell me more</a>
+                    <br>
+                    To get started with a complimentary tax-optimized transition plan, download and fill out the
+                    attached file, and email it back to us.
+                    <br>
+                    <br>
+                    <a href="/assets/public/other/remi-input.xlsm" class="btn btn-primary btn-lg"
+                        target="_blank">&nbsp;&nbsp;Get started&nbsp;&nbsp;</a>
+                </div>
+            </div>
+            <div class="col-12" data-strict-a="false">
+                <div data-habitat="C1">
+                    <div class="contact prominent">
+                        <h2>Contact us</h2>
+                        <p>Contact your sales professional for information on Remi.</p>
+                        <div class="contact-body"><a href="tel:866-701-2575" role="button"
+                                aria-label="Call 866-701-2575"><span class="icon fas fa-phone fa-flip-horizontal"
+                                    aria-hidden="true"></span>866-701-2575</a></div>
+                        <div class="contact-footer"><a href="/contact-us.html" class="btn btn-primary">More Contact
+                                Options</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" data-strict-a="false">
+                <p>*Source: CFA Institute Journal Review, "Is your alpha big enough to cover its taxes? A quarter
+                    century retrospective." 11/1/2018.</p>
+            </div>
+            <div class="stickytabs-last">Not part of a tab</div>
+            <div data-habitat="C1" class="col-12"></div>
+        </div>
+        <p>Paragraph</p>
+        <p>Paragraph</p>
+        <p>Paragraph</p>
+        <p>Paragraph</p>
+        <p>Paragraph</p>
+        <p>Paragraph</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="../dist/asg-sticky-tabs.min.js"></script>
+    <!-- <script src="/assets/public/js/jquery.min.js"></script>
+    <script src="/assets/public/js/asg-sticky-tabs.min.js"></script> -->
+</body>
+
+</html>

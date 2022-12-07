@@ -1,0 +1,106 @@
+.stickytabs-sticky { 
+    position: fixed; 
+    left:0; top: 0; 
+    right:0; 
+    z-index:1 /*adjust accordingly*/; 
+}
+#stickytabs-wrapper { 
+    height: auto; 
+}
+#stickytabs {
+    margin:auto;
+    display: flex;
+    
+    /* height: 60px; */
+    text-align: center;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ababab;
+}
+#stickytabs>a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-height: 49px;
+    z-index: 1;
+    padding: 0 30px;
+    font-weight: normal;
+    color:inherit;
+    transition: all .25s linear;
+    border-top: 1px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+#stickytabs>a.active {
+    background-color: #d8d8d8;
+    border-bottom-color:#3d14b8;
+}
+#stickytabs>a:hover {
+    background-color: #e8e8e8;
+    border-top-color:#979797;
+    text-decoration: underline;
+    transition: all .5s ease-in;
+}
+
+#stickytabs>a>span { 
+    flex:1;
+}
+
+#stickytabs>select {
+    display: none;
+    height: 50px;
+    background-color: transparent;
+    box-shadow: 0 -2px 4px rgba(20,20,20,15%);
+}
+
+#stickytabs>select>option:checked {
+    background-color:#5627e7;
+    color:#fff;
+}
+
+#stickytabs-bar {
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 0;
+    border-bottom-color: #f2f2f2;
+    transition: all .5s ease-in-out;
+}
+#stickytabs.stickytabs-sticky+#stickytabs-bar {
+    position: fixed;
+    min-height: 50px;
+    width: 99vw;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ababab;
+}
+
+.stickytabs-pane,
+.stickytabs-vpane {
+    display: none;
+}
+
+.stickytabs-pane.active,
+.stickytabs-vpane.active {
+    display: block !important;
+}
+
+@media (max-width: 767px) {
+    #stickytabs {
+        border-bottom-width: 0px;
+
+    }
+    #stickytabs>a {
+        display: none;
+    }
+    #stickytabs>select {
+        display: block;        
+    }
+    #stickytabs-bar {
+        height: 0 !important;
+        border-bottom-width: 0 !important;
+    }
+    
+    .stickytabs-pane,
+    .stickytabs-vpane {
+        display: block;
+    }    
+}
