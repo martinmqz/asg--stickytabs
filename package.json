@@ -23,8 +23,6 @@
     "auto scroll",
     "fixed"
   ],
-  "author": "martin.marquez@wellsfargo.com",
-  "license": "ISC",
   "devDependencies": {
     "eslint": "^7.17.0",
     "eslint-config-standard": "^16.0.2",
