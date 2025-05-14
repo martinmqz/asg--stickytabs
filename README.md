@@ -16,4 +16,4 @@ src/markup.html // Copy-paste Html markup on the Tridion content component where
 
 ###  How to use
 demo.html  
-Live demo: https://dev.allspringglobal.com/sandbox/martin/sticky-tabs.html 
+
